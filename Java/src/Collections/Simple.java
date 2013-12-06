@@ -1,8 +1,8 @@
 package Collections;
-
+//fff
 /*
 
-Uses a dynamic array for storing the elements.
+ Uses a dynamic array for storing the elements.
 It extends the AbstractList class and implements 
 List inteface.
 can contain duplicate elements
