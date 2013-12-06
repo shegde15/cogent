@@ -1,0 +1,11 @@
+/*
+LinkedList extends the AbstractList class and implment List and Deque Interfaces
+can contain duplicate elements
+maintain insertion order
+not synch
+manipulation fast 
+
+
+
+
+*/

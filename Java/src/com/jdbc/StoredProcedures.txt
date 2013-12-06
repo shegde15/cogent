@@ -1,0 +1,60 @@
+
+
+CREATE TABLE DBUSER(
+  USER_ID NUMBER(5) NOT NULL, 
+  USERNAME VARCHAR(20) NOT NULL, 
+  CREATED_BY VARCHAR(20) NOT NULL, 
+  CREATED_DATE DATE NOT NULL, 
+  PRIMARY KEY (USER_ID) 
+)
+
+SQL> CREATE OR REPLACE PROCEDURE insertDBUSER(
+  2        p_userid IN DBUSER.USER_ID%TYPE,
+  3        p_username IN DBUSER.USERNAME%TYPE,
+  4        p_createdby IN DBUSER.CREATED_BY%TYPE,
+  5        p_date IN DBUSER.CREATED_DATE%TYPE)
+  6  IS
+  7  BEGIN
+  8
+  9    INSERT INTO DBUSER ("USER_ID", "USERNAME", "CREATED_BY", "CREATED_DATE")
+
+ 10    VALUES (p_userid, p_username,p_createdby, p_date);
+ 11
+ 12    COMMIT;
+ 13
+ 14  END;
+
+**********************************
+
+SQL> CREATE OR REPLACE PROCEDURE getDBUSERByUserId(
+  2        p_userid IN DBUSER.USER_ID%TYPE(%TYPE attribute lets you declare a constant, variable),
+  3        o_username OUT DBUSER.USERNAME%TYPE,
+  4        o_createdby OUT  DBUSER.CREATED_BY%TYPE,
+  5        o_date OUT DBUSER.CREATED_DATE%TYPE)
+  6  IS
+  7  BEGIN
+  8
+  9    SELECT USERNAME , CREATED_BY, CREATED_DATE
+ 10    INTO o_username, o_createdby,  o_date
+ 11    FROM  DBUSER WHERE USER_ID = p_userid;
+ 12
+ 13  END;
+ 14  /************************************
+SQL> CREATE OR REPLACE PROCEDURE getDBUSERCursor(
+  2        p_username IN DBUSER.USERNAME%TYPE,
+  3        c_dbuser OUT SYS_REFCURSOR)
+  4  IS
+  5  BEGIN
+  6
+  7    OPEN c_dbuser FOR
+  8    SELECT * FROM DBUSER WHERE USERNAME LIKE p_username || '%';
+  9
+ 10  END;
+ 11  /
+
+
+
+
+
+
+ 15  /
